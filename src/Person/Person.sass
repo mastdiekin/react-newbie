@@ -1,11 +1,13 @@
-$main: #39aaa1
-  
+@import '../sass/_vars'
+
 .person
   width: 300px
   padding: 12px
   display: inline-block
   background: #eeeeee
   margin-right: 20px
+  @media (max-width: 768px)
+    margin-right: 0
   &:last-child
     margin-right: 0
   &s
@@ -13,7 +15,6 @@ $main: #39aaa1
     &-wrap
       max-width: 1000px
       margin: 0 auto
-      padding: 0 15px
     &-toggle
       min-width: 100px
       background: $main
