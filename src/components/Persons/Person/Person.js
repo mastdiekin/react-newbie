@@ -7,12 +7,13 @@ class Person extends Component {
       border: "1px solid" + this.props.color
     };
     return this.props.persons.map((person, index) => (
-      <div
-        key={person.key}
-        //   onClick={() => this.props.delete(index)}
-        className={classes.person}
-        style={style}
-      >
+      <div key={person.key} className={classes.person} style={style}>
+        <button
+          onClick={() => this.props.delete(index)}
+          className={classes["person-remove"]}
+        >
+          x
+        </button>
         Name: {person.name} <br />
         Age: {person.age} <br />
         ID: {person.key} <br />

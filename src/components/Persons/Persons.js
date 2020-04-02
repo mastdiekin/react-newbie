@@ -58,6 +58,10 @@ class Persons extends Component {
     });
   };
 
+  componentDidMount() {
+    console.log("[Persons.js] componentDidMount()");
+  }
+
   render() {
     let persons = (
       <div className={classes[("persons-hidden", "persons")]}>
@@ -76,6 +80,10 @@ class Persons extends Component {
           />
         </div>
       );
+    }
+
+    if (this.state.persons.length === 0) {
+      persons = <div className={classes.persons}>Записей не найдено</div>;
     }
 
     return (

@@ -1,5 +1,6 @@
 @import '../../sass/helpers/_mixins'
 @import '../../sass/_vars'
+@import '../../sass/_extends'
 
 .person
   width: 300px
@@ -7,13 +8,13 @@
   display: inline-block
   background: #eeeeee
   margin-right: 20px
+  position: relative
   @media (max-width: 768px)
     margin-right: 0
     width: 100%
   &:last-child
     margin-right: 0
   &s
-    padding: 15px
     &-wrap
       max-width: 1000px
       margin: 0 auto
@@ -25,3 +26,8 @@
       border: 0
       cursor: pointer
       outline: none
+  &-remove
+    position: absolute
+    top: 0
+    right: 0
+    @extend .remove
