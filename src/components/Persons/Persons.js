@@ -1,18 +1,20 @@
 import React, { Component } from "react";
-import "./Person.sass";
+import classes from "./Persons.sass";
+import makeid from "../makeid/makeid";
+import Person from "./Person/Person";
 
-class Person extends Component {
+class Persons extends Component {
   state = {
     persons: [
       {
         name: "Alex",
         age: 21,
-        key: Math.floor(Math.random() * 30)
+        key: makeid(10)
       },
       {
         name: "Vasya",
         age: 29,
-        key: Math.floor(Math.random() * 30)
+        key: makeid(10)
       }
     ],
     mainColor: "#39aaa1",
@@ -57,40 +59,31 @@ class Person extends Component {
   };
 
   render() {
-    const style = {
-      border: "1px solid" + this.state.mainColor
-    };
-
-    let persons = <div className="persons-hidden persons">Персоны скрыты</div>;
+    let persons = (
+      <div className={classes[("persons-hidden", "persons")]}>
+        Персоны скрыты
+      </div>
+    );
 
     if (this.state.showPersons) {
       persons = (
-        <div className="persons">
-          {this.state.persons.map((person, index) => (
-            <div
-              key={person.key}
-              // onClick={() => this.deletePerson(index)}
-              className="person"
-              style={style}
-            >
-              Name: {person.name} <br />
-              Age: {person.age} <br />
-              ID: {person.key} <br />
-              Index: {index} <br />
-              <input
-                type="text"
-                value={person.name}
-                onChange={event => this.changeNamePerson(event, person.key)}
-              />
-            </div>
-          ))}
+        <div className={classes.persons}>
+          <Person
+            color={this.state.mainColor}
+            persons={this.state.persons}
+            delete={this.deletePerson}
+            changed={this.changeNamePerson}
+          />
         </div>
       );
     }
 
     return (
-      <div className="persons-wrap">
-        <button className="persons-toggle" onClick={this.tooglePersons}>
+      <div className={classes["persons-wrap"]}>
+        <button
+          className={classes["persons-toggle"]}
+          onClick={this.tooglePersons}
+        >
           {this.state.buttonText}
         </button>
         {persons}
@@ -99,4 +92,4 @@ class Person extends Component {
   }
 }
 
-export default Person;
+export default Persons;
