@@ -69,6 +69,15 @@ class Persons extends Component {
       </div>
     );
 
+    let toggleButton = (
+      <button
+        className={classes["persons-toggle"]}
+        onClick={this.tooglePersons}
+      >
+        {this.state.buttonText}
+      </button>
+    );
+
     if (this.state.showPersons) {
       persons = (
         <div className={classes.persons}>
@@ -84,16 +93,12 @@ class Persons extends Component {
 
     if (this.state.persons.length === 0) {
       persons = <div className={classes.persons}>Записей не найдено</div>;
+      toggleButton = "";
     }
 
     return (
       <div className={classes["persons-wrap"]}>
-        <button
-          className={classes["persons-toggle"]}
-          onClick={this.tooglePersons}
-        >
-          {this.state.buttonText}
-        </button>
+        {toggleButton}
         {persons}
       </div>
     );
