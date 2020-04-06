@@ -9,17 +9,18 @@ class Persons extends Component {
       {
         name: "Alex",
         age: 21,
-        key: makeid(10)
+        key: makeid(10),
       },
       {
         name: "Vasya",
         age: 29,
-        key: makeid(10)
-      }
+        key: makeid(10),
+      },
     ],
     mainColor: "#39aaa1",
     showPersons: true,
-    buttonText: "Hide persons"
+    buttonText: "Hide persons",
+    changeCount: 0,
   };
 
   tooglePersons = () => {
@@ -27,11 +28,11 @@ class Persons extends Component {
     const buttonTextDefault = this.state.buttonText;
     this.setState({
       showPersons: !doesShow,
-      buttonText: !doesShow ? "Hide persons" : "Show persons"
+      buttonText: !doesShow ? "Hide persons" : "Show persons",
     });
   };
 
-  deletePerson = index => {
+  deletePerson = (index) => {
     const currentStatePersons = [...this.state.persons];
     currentStatePersons.splice(index, 1);
     this.setState({ persons: currentStatePersons });
@@ -40,12 +41,12 @@ class Persons extends Component {
   changeNamePerson = (event, key) => {
     // console.log(event.target.value);
 
-    const personIndex = this.state.persons.findIndex(p => {
+    const personIndex = this.state.persons.findIndex((p) => {
       return p.key === key;
     });
 
     const person = {
-      ...this.state.persons[personIndex]
+      ...this.state.persons[personIndex],
     };
 
     person.name = event.target.value;
@@ -53,8 +54,12 @@ class Persons extends Component {
     const currentStatePersons = [...this.state.persons];
     currentStatePersons[personIndex] = person;
 
-    this.setState({
-      persons: currentStatePersons
+    this.setState((prevState, props) => {
+      console.log(prevState);
+      return {
+        persons: currentStatePersons,
+        changeCount: (prevState.changeCount += 1),
+      };
     });
   };
 
