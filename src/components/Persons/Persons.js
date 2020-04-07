@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import classes from "./Persons.sass";
 import makeid from "../makeid/makeid";
 import Person from "./Person/Person";
+import PropTypes from "prop-types";
 
 class Persons extends Component {
   state = {
@@ -109,5 +110,7 @@ class Persons extends Component {
     );
   }
 }
+
+Person.propTypes = {};
 
 export default Persons;
